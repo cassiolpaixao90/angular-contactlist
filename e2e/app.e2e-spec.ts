@@ -1,10 +1,10 @@
-import { AngularTodolistPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('angular-todolist App', () => {
-  let page: AngularTodolistPage;
+describe('angular-cli App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new AngularTodolistPage();
+    page = new AppPage();
   });
 
   it('should display welcome message', () => {

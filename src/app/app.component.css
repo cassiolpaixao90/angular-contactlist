@@ -1,0 +1,57 @@
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.valign-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.valign {
+  width: 100%;
+}
+
+.abs {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.fullscreen-wrapper {
+  top: 5%!important;
+  bottom: 5%!important;
+  max-height: 90%!important;
+  height: 90%!important;
+  width: 90%!important;
+}
+
+.slider .slides li .caption {
+  color: #fff;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  opacity: 0;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.grid-example {
+  margin: 7px 0;
+  text-align: center;
+  line-height: 100px;
+  font-size: 28px;
+  padding: 0;
+  width: 100%;
+}
