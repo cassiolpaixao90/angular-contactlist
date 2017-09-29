@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Http } from '@angular/http';
+import { ContactService } from '../contact/contact.service';
+import { ContactModule } from '../contact/contact.module';
 
 
 
@@ -9,19 +11,21 @@ import { Http } from '@angular/http';
   templateUrl: './listagem.component.html',
   styleUrls: ['./listagem.component.css'],
 })
-export class ListagemComponent {
+export class ListagemComponent implements OnInit {
+ 
+  contacts: ContactModule[];
 
-  fotos: Object[] = [];
+  constructor(private _contactService: ContactService) {
+    // http
+    //   .get('http://localhost:5000/v1/contacts')
+    //   .map(res => res.json())
+    //   .subscribe(contacts => {
+    //     this.contacts = contacts;
+    //     console.log(contacts);
+    //   }, error => console.log(error));
+  }
 
-  constructor(http: Http) {
-
-    http
-      .get('http://localhost:5000/v1/fotos')
-      .map(res => res.json())
-      .subscribe(fotos => {
-        this.fotos = fotos;
-        console.log(fotos);
-      }, error => console.log(error));
-
+  ngOnInit(): void {
+    this.contacts = this._contactService.getContacts();
   }
 }

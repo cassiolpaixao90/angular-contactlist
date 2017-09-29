@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FotoComponent } from '../foto/foto.component';
+import { ContactComponent } from '../contact/contact.component';
 import { Http, Headers } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CadastroComponent implements OnInit {
 
-  foto: FotoComponent = new FotoComponent();
+  contact: ContactComponent = new ContactComponent();
   http: Http;
   meuForm: FormGroup;
 
@@ -23,8 +23,8 @@ export class CadastroComponent implements OnInit {
       titulo: ['', Validators.compose(
         [Validators.required, Validators.minLength(4)]
     )],
-      url: ['', Validators.required],
-      fone: ['', Validators.required],
+      url: ['', Validators.required, Validators.minLength(4)],
+      fone: ['', Validators.required, Validators.minLength(4)],
     });
   }
 
@@ -33,13 +33,13 @@ export class CadastroComponent implements OnInit {
 
   cadastrar(event) {
 
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:5000/v1/fotos', JSON.stringify(this.foto), { headers: headers })
-      .subscribe(() => {
-        this.foto = new FotoComponent();
-        console.log('salvo vom sucesso');
-      }, error => console.log(error));
+    // let headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    // this.http.post('http://localhost:5000/v1/contacts', JSON.stringify(this.contact), { headers: headers })
+    //   .subscribe(() => {
+    //     this.contact = new ContactComponent();
+    //     console.log('salvo vom sucesso');
+    //   }, error => console.log(error));
 
   }
 

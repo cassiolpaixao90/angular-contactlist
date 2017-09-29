@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-painel',
@@ -8,14 +8,23 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PainelComponent implements OnInit {
 
   @Input() titulo: string;
+  @Output() removeElement: EventEmitter<Event>;
 
+  private elemento: ElementRef;
 
-  constructor() {  }
+  constructor(elemento: ElementRef) {
+    this.elemento = elemento;
+  }
 
   ngOnInit() {
     this.titulo = this.titulo.length > 7
-      ? `${this.titulo.substr(0, 7)}...`
+      ? `{this.titulo.substr(0, 7)}...`
       : this.titulo;
   }
+
+  fadeOut(cb) {   
+    // erro de compilação! Não entra o $!
+    //  $(this.elemento.nativeElement).fadeOut(cb);
+ }
 
 }

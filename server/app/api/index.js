@@ -3,9 +3,9 @@ var db = require('../../config/database');
 var api = {}
 
 api.adiciona = function(req, res) {
-    var foto = req.body;
-    delete foto._id;
-    db.insert(foto, function(err, newDoc) {
+    var contact = req.body;
+    delete contact._id;
+    db.insert(contact, function(err, newDoc) {
         if(err) return console.log(err);
         console.log('Adicionado com sucesso: ' + newDoc._id);
         res.json(newDoc._id);
@@ -13,15 +13,15 @@ api.adiciona = function(req, res) {
 };
 
 api.busca = function(req, res) {
-   db.findOne({_id: req.params.fotoId }, function(err, doc) {
+   db.findOne({_id: req.params.contactId }, function(err, doc) {
         if (err) return console.log(err);
         res.json(doc);
     });
 };
 
 api.atualiza = function(req, res) {
-    console.log('Parâmetro recebido:' + req.params.fotoId);
-    db.update({_id : req.params.fotoId }, req.body, function(err, numReplaced) {
+    console.log('Parâmetro recebido:' + req.params.contactId);
+    db.update({_id : req.params.contactId }, req.body, function(err, numReplaced) {
         if (err) return console.log(err);
         if(numReplaced) res.status(200).end();
         res.status(500).end();
@@ -31,7 +31,7 @@ api.atualiza = function(req, res) {
 };
 
 api.lista = function(req, res) {
-    db.find({}).sort({titulo: 1}).exec(function(err, doc) {
+    db.find({}).sort({nome: 1}).exec(function(err, doc) {
         if (err) return console.log(err);
         res.json(doc);
     });
@@ -48,7 +48,7 @@ api.listaPorGrupo = function(req, res) {
 
 api.remove = function(req, res) {
 
-    db.remove({ _id: req.params.fotoId }, {}, function (err, numRemoved) {
+    db.remove({ _id: req.params.contactId }, {}, function (err, numRemoved) {
         if (err) return console.log(err);
         console.log('removido com sucesso');
         if(numRemoved) res.status(200).end();
