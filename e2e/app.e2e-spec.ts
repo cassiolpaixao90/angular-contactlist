@@ -1,14 +1,14 @@
-import { AppPage } from './app.po';
+import { AngularCrudRestPage } from './app.po';
 
-describe('angular-cli App', () => {
-  let page: AppPage;
+describe('angular-crud-rest App', () => {
+  let page: AngularCrudRestPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new AngularCrudRestPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });

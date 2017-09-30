@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="name" type="text" class="validate" [(ngModel)]="contact.name" formControlName="name" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid">
+          <label for="name" [class.active]="contact.name" data-error="Name is required and needs to contain at least 3 chars">
+          Name
+        </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">phone</i>
+
+          <input id="phone" type="tel" class="validate" [(ngModel)]="contact.phone" formControlName="phone" [class.invalid]="form.controls['phone'].touched && !form.controls['phone'].valid">
+          <label for="phone" [class.active]="contact.phone" data-error="phone is required and needs to contain at least 3 chars">
+          Phone
+        </label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" [disabled]="!form.valid">
+      Submit<i class="material-icons right">send</i>
+    </button>
+      <a [routerLink]="['']" class="btn btn-primary">Voltar</a>
+    </form>
+  </div>
+</div>
