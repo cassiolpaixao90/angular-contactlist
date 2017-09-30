@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Contact } from '../shared/contact';
 import { ContactsService } from '../shared/contacts.service';
-import { BasicValidators } from '../../shared/basic-validators';
 
 @Component({
   selector: 'app-contact-form',
@@ -38,7 +37,8 @@ export class ContactFormComponent implements OnInit {
   ngOnInit() {
     var id = this.route.params.subscribe(params => {
       var id = params['id'];
-
+      console.log('idparameter', id);
+      
       this.title = id ? 'Edit Contact' : 'New Contact';
 
       if (!id) {
@@ -47,10 +47,14 @@ export class ContactFormComponent implements OnInit {
 
       this.contactsService.getContact(id)
         .subscribe(
-        contact => this.contact = contact,
+        contact => {
+          this.contact = contact;
+          console.log(contact);
+          
+        },
         response => {
           if (response.status === 404) {
-            this.router.navigate(['NotFound']);
+            this.router.navigate  (['NotFound']);
           }
         });
     });
@@ -59,10 +63,14 @@ export class ContactFormComponent implements OnInit {
   save() {
     var result,
     contactValue = this.form.value;
-
-    if (contactValue.id) {
-      result = this.contactsService.updateContact(contactValue);
+    console.log('contactValue', contactValue);
+    console.log(this.contact);
+    
+    if (this.contact._id) {
+      console.log('update', contactValue.id);
+      result = this.contactsService.updateContact(this.contact);
     } else {
+      console.log('add');
       result = this.contactsService.addContact(contactValue);
     }
 

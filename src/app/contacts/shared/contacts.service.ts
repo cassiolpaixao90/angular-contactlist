@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions} from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -9,9 +9,10 @@ import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class ContactsService {
 
-  private url: string = "http://jsonplaceholder.typicode.com/users";
+  private url: string = 'https://nodejs-todolist-api.herokuapp.com/contacts/clp';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) { 
+  }
 
   getContacts(){
     return this.http.get(this.url)
@@ -24,17 +25,23 @@ export class ContactsService {
   }
 
   addContact(contact){
-    return this.http.post(this.url, JSON.stringify(contact))
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.url, JSON.stringify(contact), options)
       .map(res => res.json());
   }
 
   updateContact(contact){
-    return this.http.put(this.getContactUrl(contact.id), JSON.stringify(contact))
+    console.log(contact);
+    
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.put(this.getContactUrl(contact._id), JSON.stringify(contact), options)
       .map(res => res.json());
   }
 
   deleteContacts(id){
-    console.log(id);
+    console.log('deleteContacts', id);
     return this.http.delete(this.getContactUrl(id))
       .map(res => res.json());
   }

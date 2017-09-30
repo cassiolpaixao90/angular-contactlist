@@ -22,7 +22,7 @@ export class ContactsComponent implements OnInit {
     if (confirm("Are you sure you want to delete " + contact.name + "?")) {
       var index = this.contacts.indexOf(contact);
       this.contacts.splice(index, 1);
-      this.contactsService.deleteContacts(contact.id)
+      this.contactsService.deleteContacts(contact._id)
         .subscribe(null,
           err => {
             alert("Could not delete contact.");
