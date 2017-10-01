@@ -7,7 +7,6 @@ import { HttpModule }  from '@angular/http';
 import { ContactsComponent } from './contact.component';
 import { ContactsService } from './shared/contacts.service';
 import { ContactFormComponent } from './contact-form/contact-form.component';
-import { SearchFilterPipe } from './contact.pipe';
 
 @NgModule({
   imports: [
@@ -19,8 +18,7 @@ import { SearchFilterPipe } from './contact.pipe';
   ],
   declarations: [
     ContactsComponent,
-    ContactFormComponent,
-    SearchFilterPipe
+    ContactFormComponent
   ],
   exports: [
     ContactsComponent
