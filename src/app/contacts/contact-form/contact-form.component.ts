@@ -63,14 +63,11 @@ export class ContactFormComponent implements OnInit {
   save() {
     var result,
     contactValue = this.form.value;
-    console.log('contactValue', contactValue);
-    console.log(this.contact);
     
     if (this.contact._id) {
       console.log('update', contactValue.id);
       result = this.contactsService.updateContact(this.contact);
     } else {
-      console.log('add');
       result = this.contactsService.addContact(contactValue);
     }
 
